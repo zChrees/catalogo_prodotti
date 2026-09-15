@@ -1,0 +1,30 @@
+================================================================================
+                      LISTA COMANDI (FASTAPI & ALEMBIC)
+================================================================================
+
+--- 1. GESTIONE AMBIENTE VIRTUALE (venv) ---
+python -m venv venv                 # Crea la cartella dell'ambiente virtuale (solo la prima volta)
+venv\Scripts\activate               # Attiva venv su Windows (Prompt dei comandi) <----  forse questa riga non serve
+.\venv\Scripts\activate             # Attiva venv su Windows (PowerShell / VS Code)
+source venv/bin/activate            # Attiva venv su Mac e Linux
+deactivate                          # Disattiva l'ambiente virtuale corrente
+
+--- 2. COMANDI UTILI CON PIP (GESTIONE LIBRERIE) ---
+pip install -r requirements.txt     # Installa tutte le librerie del progetto da file
+pip freeze > requirements.txt       # Aggiorna il file dei requisiti con le librerie attuali
+pip install <nome_libreria>         # Installa una nuova libreria (es: pip install passlib)
+pip uninstall <nome_libreria>       # Disinstalla e rimuove una libreria dal progetto
+pip list                            # Mostra la lista di tutte le librerie installate nel venv
+pip show <nome_libreria>            # Mostra dettagli su una libreria (versione, autore, dove è salvata)
+pip list --outdated                 # Controlla se ci sono librerie installate che hanno aggiornamenti disponibili
+pip install --upgrade <nome_lib>    # Aggiorna una libreria specifica all'ultima versione disponibile
+
+--- 3. AVVIO E GESTIONE SERVER FASTAPI ---
+uvicorn app.main:app --reload       # Avvia il server in modalità sviluppo con auto-ricaricamento
+uvicorn app.main:app --reload --port 8080 # Avvia il server su una porta alternativa se la 8000 è occupata
+
+--- 4. GESTIONE DATABASE E MIGRAZIONI (ALEMBIC) ---
+alembic init alembic             # Inizializza la cartella delle migrazioni (solo la prima volta)
+alembic revision --autogenerate -m "descrizione" # Genera un nuovo file di migrazione leggendo i modelli
+alembic upgrade head                # Applica tutte le migrazioni pendenti al database phpMyAdmin
+alembic downgrade -1                # Annulla l'ultima migrazione effettuata sul database
